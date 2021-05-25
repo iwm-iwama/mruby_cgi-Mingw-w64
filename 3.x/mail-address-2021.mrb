@@ -633,7 +633,7 @@ rtnHtml2PageSearch()
 		if s == $_AND_OR
 			sSelectAndOr << " selected"
 		end
-		sSelectAndOr << " value=#{s}>#{s}</option>"
+		sSelectAndOr << " value=\"#{s}\">#{s}</option>"
 	end
 
 rtn = <<EOD
