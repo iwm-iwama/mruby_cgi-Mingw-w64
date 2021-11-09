@@ -78,7 +78,7 @@ IwmRtnHashQueryString()
 		when "GET"
 			qs = ENV['QUERY_STRING']
 		when "POST"
-			qs = $stdin.read(255) # バイナリ数指定
+			qs = $stdin.read(255) # バイト数指定
 		else
 			return {}
 	end
