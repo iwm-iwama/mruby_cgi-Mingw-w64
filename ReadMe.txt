@@ -1,7 +1,7 @@
 mrubyベースの軽量CGI実行エンジンを生成 
 
 ＜使用コンパイラ＞
-・Win10 : MinGW
+・Win10 : Mingw-w64
 ・Linux : GCC
 
 ＜Make＞
