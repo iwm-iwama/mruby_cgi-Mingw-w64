@@ -1,0 +1,69 @@
+MRuby::GemBox.new do |conf|
+	##	conf.gembox "stdlib"
+	##	conf.gembox "stdlib-ext"
+	##	conf.gembox "stdlib-io"
+	##	conf.gembox "math"
+	##	conf.gembox "metaprog"
+
+	# Generate mrbc command
+	##	conf.gem :core => "mruby-bin-mrbc"
+
+	# Generate mirb command
+	##	conf.gem :core => "mruby-bin-mirb"
+
+	# Generate mruby command
+	conf.gem :core => "mruby-bin-mruby"
+
+	# Generate mruby-strip command
+	##	conf.gem :core => "mruby-bin-strip"
+
+	# Generate mruby-config command
+	##	conf.gem :core => "mruby-bin-config"
+
+	#-----------------------------------------------------------------
+	# 外部ライブラリ
+	#-----------------------------------------------------------------
+	# https://github.com/iij/mruby-env
+	conf.gem :core => "mruby-env-master"
+
+	# https://github.com/iij/mruby-regexp-pcre
+	conf.gem :core => "mruby-regexp-pcre-master"
+
+	#-----------------------------------------------------------------
+	# 基本ライブラリ＋
+	#-----------------------------------------------------------------
+	conf.gem :core => "mruby-exit"
+
+	#-----------------------------------------------------------------
+	# 基本ライブラリ
+	#-----------------------------------------------------------------
+	# Use standard IO/File class
+	conf.gem :core => "mruby-io"
+
+	# Use standard Array#pack, String#unpack methods
+	conf.gem :core => "mruby-pack"
+
+	# Use standard Kernel#sprintf method
+	conf.gem :core => "mruby-sprintf"
+
+	# Use standard print/puts/p
+	conf.gem :core => "mruby-print"
+
+	# Use standard Math module
+	conf.gem :core => "mruby-math"
+
+	# Use standard Time class
+	conf.gem :core => "mruby-time"
+
+	# Use String class extension
+	conf.gem :core => "mruby-string-ext"
+
+	# Use Enumerator class (require mruby-fiber)
+	conf.gem :core => "mruby-enumerator"
+
+	# Use mruby-compiler to build other mrbgems
+	conf.gem :core => "mruby-compiler"
+
+	# Use eval()
+	##	conf.gem :core => "mruby-eval"
+end
