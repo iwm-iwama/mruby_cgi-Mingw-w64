@@ -6,6 +6,6 @@ mrubyベースの軽量CGI実行エンジンを生成
 
 ＜Make＞
 (1) https://mruby.org/ からソースコードをダウンロード。
-(2) /conf 以下のファイルと置き換える。
-(3) rake または iwm-make.bat (iwm-make.sh) を実行。
-(4) build/host/bin 以下に mruby+cgi.exe (mruby+cgi) が生成される。
+(2) /3.x 以下のファイルを(1)へコピー。
+(3) (Win10)make_mruby+cgi.bat／(Linux)make_mruby+cgi.sh を実行。
+(4) ./build/host/bin 以下に (Win10)mruby+cgi.exe／(Linux)mruby+cgi が生成される。
