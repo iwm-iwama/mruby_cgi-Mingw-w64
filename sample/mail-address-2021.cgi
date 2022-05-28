@@ -1,8 +1,8 @@
 #!mruby+cgi.exe
-##/usr/bin/env mruby+cgi
+##/usr/bin/mruby+cgi
 #coding:utf-8
 
-$VERSION = "Ver.iwm20210309"
+$VERSION = "Ver.iwm20220527"
 
 =begin
 
@@ -32,7 +32,7 @@ $VERSION = "Ver.iwm20210309"
 $IFN = "mail-address-2021.tsv"
 
 # タイトル
-$TITLE = "メールアドレス一覧"
+$TITLE = "職員メールアドレス検索"
 
 # パンくず
 #	[0]title1, [1]url1,
@@ -67,7 +67,7 @@ IwmRtnHashQueryString()
 		when "GET"
 			qs = ENV['QUERY_STRING']
 		when "POST"
-			qs = $stdin.read(255) # バイナリ数指定
+			qs = $stdin.read(256) # バイナリ数指定
 		else
 			return {}
 	end
@@ -153,14 +153,12 @@ body
 	margin:0;
 	margin-left:auto;
 	margin-right:auto;
-	padding:0;
+	padding:10px 0;
 	width:800px;
 }
 a[href]
 {
-	color:#00d;
 	text-decoration:none;
-	padding:1px 2px;
 }
 a[name]
 {
@@ -178,47 +176,52 @@ a:hover
 }
 font._a1
 {
-	background:linear-gradient(transparent 55%, #d3e4ff 105%);
 	color:#000;
-	font-size:25px;
+	font-size:26px;
 	line-height:1.0;
 	margin:0;
-	padding:0 6px;
+	padding:0;
 }
 font._a2
 {
 	color:#ffa000;
 	font-size:14px;
+	margin:0;
+	padding:0;
 }
 font._a3
 {
 	color:#6b72fa;
 	font-size:14px;
+	margin:0;
+	padding:0;
 }
 font._a4
 {
 	font-size:12px;
+	margin:0;
+	padding:0;
 }
 table
 {
 	border-collapse:collapse;
 	border:0;
 	font-size:12px;
-	width:800px;
+	width:100%;
 }
 th
 {
-	background:#636363;
-	border:solid 1px #454545;
+	background:#777;
+	border:solid 1px #555;
 	color:#fff;
-	font-weight:normal;
+	font-weight:500;
 	padding:0 8px;
 	text-align:center;
 }
 td
 {
 	background:#fff;
-	border:solid 1px #454545;
+	border:solid 1px #555;
 	margin:0;
 	padding:0 4px;
 }
@@ -233,20 +236,13 @@ input[type=text]
 {
 	background:#fff;
 	border:solid 1px #ffa000;
-	border-left:solid 13px #ffa000;
-	border-radius:20px 0 0 20px;
 	font-size:14px;
 	height:19px;
 	/* ime-mode:active; */
-	margin:0;
+	margin:0 0 0 4px;
 	padding:0 5px;
 	vertical-align:top;
 	width:160px;
-}
-input[type=text]:hover,
-input[type=text]:focus
-{
-	box-shadow:0 0 3px 3px #d3e4ff;
 }
 select
 {
@@ -272,14 +268,11 @@ input#button_init
 {
 	background:#ffa000;
 	border:solid 1px #ffa000;
-	border-left:solid 13px #ffa000;
-	border-radius:0 20px 20px 0;
 	color:#fff;
 	height:21px;
-	margin:0 0 0 -18px;
-	padding:0;
+	margin:0;
+	padding:0 6px 0 2px;
 	vertical-align:top;
-	width:43px;
 }
 input#button_init:hover
 {
@@ -292,7 +285,7 @@ input[type=button]
 	border:0;
 	color:#fff;
 	height:21px;
-	margin:0 0 0 4px;
+	margin:0;
 	padding:0 14px 2px 14px;
 }
 input[type=button]:hover
@@ -302,7 +295,7 @@ input[type=button]:hover
 textarea
 {
 	background:#fff;
-	border:solid 1px #454545;
+	border:solid 1px #555;
 	font-size:11px;
 	padding:4px;
 }
@@ -318,16 +311,13 @@ ul, li
 div._boxExplain
 {
 	background:#fff;
-	border:solid 1px #ffa000;
-	box-shadow:0 0 4px rgba(0,0,0,0.1);
+	border:solid 1px #f00;
+	box-shadow:0 0 3px 3px #eee;
 	border-radius:8px;
 	line-height:0.7;
-	padding:8px 12px;
+	margin:0 4px;
+	padding:10px;
 	width:630px;
-}
-div._boxExplain a
-{
-	border-bottom:dotted 1px #faf;
 }
 div._boxExplain font._c1
 {
@@ -338,13 +328,12 @@ div._boxExplain font._c1
 div._boxExplain font._c2
 {
 	font-size:12px;
-	font-weight:bolder;
+	font-weight:600;
 	line-height:1.0;
 	margin-left:12px;
 }
 div._boxExplain font._c3
 {
-	border-bottom:dotted 1px #feae1b;
 	color:#f00;
 	font-size:12px;
 	line-height:1.0;
@@ -383,7 +372,7 @@ div._v200px
 }
 div._hurigana
 {
-	color:#69c;
+	color:#3d7cce;
 	font-size:9px;
 	margin:0;
 	padding:0;
@@ -412,16 +401,16 @@ ul._balloon li:hover > ul
 }
 ul._balloon li span
 {
-	background:#fafafa;
-	border:2px solid #e00;
-	border-radius:6px;
-	box-shadow:0 0 6px rgba(0,0,0,0.1);
+	background:#fff;
+	border:1px solid #ffa000;
+	box-shadow:0 0 3px 3px #eee;
 	color:#000;
 	font-size:12px;
+	font-weight:600;
 	left:12px;
 	line-height:1.2;
 	margin:0;
-	padding:6px 12px;
+	padding:6px 8px 10px 8px;
 	position:absolute;
 	text-align:left;
 	top:30px;
@@ -430,75 +419,25 @@ ul._balloon li span
 ul._balloon li span:after
 {
 	content:"";
-	border-bottom:14px solid #e00;
+	border-bottom:14px solid #ffa000;
 	border-left:7px solid transparent;
 	border-right:7px solid transparent;
-	left:8px;
+	left:2px;
 	position:absolute;
 	top:-14px;
 }
 ul._balloon li span font._b1
 {
-	border-bottom:dotted 1px #fe9998;
-	color:#00f;
-	font-size:13px;
-	line-height:1.5;
-}
-ul._balloon li span font._b2
-{
 	color:#f00;
 	font-size:14px;
 	line-height:1.5;
 }
-ul._balloon li span font._b3
+ul._balloon li span font._b2
 {
 	color:#000;
 	font-size:12px;
-	margin-left:24px;
+	margin-left:12px;
 	line-height:1.5;
-}
-ul._balloon li span font b
-{
-	color:#f00;
-}
-/*--------------------------------------------------------------------
-	z-index:501
-	Pager
---------------------------------------------------------------------*/
-ul._pointer
-{
-	font-size:12px;
-	list-style:none;
-	margin:0;
-	padding:0;
-	position:fixed;
-	z-index:501;
-	width:800px;
-}
-ul._pointer li
-{
-	float:right;
-}
-ul._pointer li a
-{
-	color:#fff;
-	margin:0;
-	padding:4px 10px;
-}
-ul._pointer li a._left
-{
-	background:#f72;
-	border-radius:15px 0 0 15px;
-}
-ul._pointer li a._right
-{
-	background:#f54;
-	border-radius:0 15px 15px 0;
-}
-ul._pointer li a._left:hover,
-ul._pointer li a._right:hover
-{
-	box-shadow:0 0 2px 1px #ff0;
 }
 /*--------------------------------------------------------------------
 	Horizontal CSS Drop-Down Menu Module
@@ -606,17 +545,15 @@ rtn = <<EOD
 <br>
 <font class="_a4">
 EOD
-
-i1 = $ARY_PANKUZU.size
-i2 = 0
-while i2 < i1
-	rtn << "<a href=\"#{$ARY_PANKUZU[i2 + 1]}\" target=\"_self\">#{$ARY_PANKUZU[i2]}</a>&nbsp;&gt;&nbsp;"
-	i2 += 2
-end
-
+	i1 = $ARY_PANKUZU.size
+	i2 = 0
+	while i2 < i1
+		rtn << "<a href=\"#{$ARY_PANKUZU[i2 + 1]}\" target=\"_self\">#{$ARY_PANKUZU[i2]}</a>&nbsp;&gt;&nbsp;"
+		i2 += 2
+	end
 rtn << <<EOD
 </font>
-<div class="_v4px"></div>
+<div class="_v10px"></div>
 <font class="_a1">#{$TITLE}</font>
 <div class="_v10px"></div>
 EOD
@@ -633,7 +570,7 @@ rtnHtml2PageSearch()
 		if s == $_AND_OR
 			sSelectAndOr << " selected"
 		end
-		sSelectAndOr << " value=#{s}>#{s}</option>"
+		sSelectAndOr << " value=\"#{s}\">#{s}</option>"
 	end
 
 rtn = <<EOD
@@ -1190,15 +1127,13 @@ rtn = <<EOD
       <ul>
        <li>
         <span>
-         <font class="_b1">複数のキーワードは "空白" で区切って入力してください。</font>
+         <font class="_b1">複数のキーワードは 空白 で区切ってください。</font>
          <br>
-         <font class="_b2">【検索例】</font>
+         <font class="_b2">AND：[総務部 グループ] ⇒ [総務部 かつ グループ] を検索します。</font>
          <br>
-         <font class="_b3">AND：[総務部 グループ] ⇒ [総務部かつグループ] を検索します。</font>
+         <font class="_b2">OR&nbsp;：[部長 センター長] ⇒ [部長 もしくは センター長] を検索します。</font>
          <br>
-         <font class="_b3">OR&nbsp;：[部長 課長] ⇒ [部長もしくは課長] を検索します。</font>
-         <br>
-         <font class="_b3">NOR：[部長 課長] ⇒ [部長もしくは課長]<b>以外</b> を検索します。</font>
+         <font class="_b2">NOR：[部長 センター長] ⇒ [部長 もしくは センター長] 以外 を検索します。</font>
          <br>
         </span>
        </li>
@@ -1225,23 +1160,23 @@ rtnStrToHtml(
 	# TSV対応
 	ary = ln.split("\t")
 
-	rtn = ""
-
 	if ln =~ /#{keyword}/i && ary[4] =~ /#{org}/ && ary[9] =~ /#{grp1}/ && ary[10] =~ /#{grp2}/ 
 		$SearchCnt += 1 # 検索件数
 
-		rtn << " "
-		rtn << "<tr>"
-		rtn << "<td>#{ary[5]}</td>" # 部
-		rtn << "<td>#{ary[6]}</td>" # 課
-		rtn << "<td>#{ary[7]}</td>" # 係
-		rtn << "<td>#{ary[3]}</td>" # 役職
-		rtn << "<td><div class=\"_hurigana\">#{ary[2]}</div><div name=\"_output1\">#{ary[1]}</div></td>" # よみ、氏名
-		rtn << "<td name=\"_output2\"><a href=\"mailto:#{ary[0]}\">#{ary[0]}</a></td>" # email
-		rtn << "</tr>\n"
+		return(
+			" " +
+			"<tr>" +
+			"<td>#{ary[5]}</td>" + # 部
+			"<td>#{ary[6]}</td>" + # 課
+			"<td>#{ary[7]}</td>" + # 係
+			"<td>#{ary[3]}</td>" + # 役職
+			"<td><div class=\"_hurigana\">#{ary[2]}</div><div name=\"_output1\">#{ary[1]}</div></td>" + # よみ、氏名
+			"<td name=\"_output2\"><a href=\"mailto:#{ary[0]}\">#{ary[0]}</a></td>" + # email
+			"</tr>\n"
+		)
+	else
+		return ""
 	end
-
-	return rtn
 end
 
 def
@@ -1281,34 +1216,29 @@ rtnHtml2PageSearchResult()
 		allCnt += 1
 	end
 
-	rtn = ""
-
-	rtn << "<div class=\"_v10px\"></div>\n"
-	rtn << "<ul class=\"_pointer\">\n"
-	rtn << " <li><a class=\"_left\" href=\"#0\">▲ページ先頭へ</a><a class=\"_right\" href=\"#9\">▼末尾へ</a></li>\n"
-	rtn << "</ul>\n"
-	rtn << "<font class=\"_a2\">【該当 #{$SearchCnt}件／#{allCnt}件中】</font>&nbsp;&nbsp;\n"
-	rtn << "<table border=\"1\">\n"
-	rtn << " "
-	rtn << "<tr>"
-	rtn << "<th>部</th>"
-	rtn << "<th>課</th>"
-	rtn << "<th>係</th>"
-	rtn << "<th>役職</th>"
-	rtn << "<th>氏名</th>"
-	rtn << "<th>email</th>"
-	rtn << "</tr>\n"
-	rtn << result
-	rtn << "</table>\n"
-	rtn << "<div class=\"_v20px\"></div>\n"
-	rtn << "<form>\n"
-	rtn << " <textarea id=\"_textarea11\"><!-- JSで生成 --></textarea>\n"
-	rtn << " <div class=\"_v2px\"></div>\n"
-	rtn << " <input type=\"button\" value=\"メール作成\" onClick=\"eSendMail('_textarea11')\"/>\n"
-	rtn << " <input type=\"button\" value=\"コピー\" onClick=\"eCopy('_textarea11')\"/>\n"
-	rtn << "</form>\n"
-
-	return rtn
+	return(
+		"<div class=\"_v10px\"></div>\n" +
+		"<font class=\"_a2\">【該当 #{$SearchCnt}件／#{allCnt}件中】</font>&nbsp;&nbsp;<font class=\"_a3\">[部／課]リンクから座席表を表示します.</font>\n" +
+		"<table style=\"margin:0 0 0 4px;\">\n" +
+		" " +
+		"<tr>" +
+		"<th>部</th>" +
+		"<th>課</th>" +
+		"<th>係</th>" +
+		"<th>役職</th>" +
+		"<th>氏名</th>" +
+		"<th>email</th>" +
+		"</tr>\n" +
+		result +
+		"</table>\n" +
+		"<div class=\"_v20px\"></div>\n" +
+		"<form style=\"margin:0 0 0 4px;\">\n" +
+		" <textarea id=\"_textarea11\"><!-- JSで生成 --></textarea>\n" +
+		" <div class=\"_v2px\"></div>\n" +
+		" <input type=\"button\" value=\"メール作成\" onClick=\"eSendMail('_textarea11')\"/>\n" +
+		" <input type=\"button\" value=\"コピー\" onClick=\"eCopy('_textarea11')\"/>\n" +
+		"</form>\n"
+	)
 end
 
 def
@@ -1329,16 +1259,16 @@ window.onload = function()
 {
 	var obj1 = document.getElementsByName("_output1");
 	var obj2 = document.getElementsByName("_output2");
-	var rtn = "";
+	var s1 = "";
 	var i1 = 0;
 	while(i1 < obj1.length)
 	{
-		rtn += "'" + obj1[i1].innerText + "' <" + obj2[i1].innerText + ">;\\n";
+		s1 += "'" + obj1[i1].innerText + "' <" + obj2[i1].innerText + ">;\\n";
 		++i1;
 	}
 
 	try{
-		document.getElementById("_textarea11").innerHTML = rtn;
+		document.getElementById("_textarea11").innerHTML = s1;
 	}
 	catch(e){
 	}
