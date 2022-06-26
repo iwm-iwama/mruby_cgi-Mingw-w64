@@ -2,7 +2,7 @@
 ##/usr/bin/mruby+cgi
 #coding:utf-8
 
-$VERSION = "Ver.iwm20220527"
+$VERSION = "Ver.iwm20220626"
 
 =begin
 
@@ -1123,7 +1123,7 @@ rtn = <<EOD
    <form name="f1" method="get">
     <ul class="_balloon">
      <li>
-      <input type="text" name="keyword" value="#{$KEYWORD}" placeholder="キーワード"/><select name="and_or" onChange="submit()">#{sSelectAndOr}</select>
+      <input type="text" id="text_search" name="keyword" value="#{$KEYWORD}" placeholder="キーワード"/><select name="and_or" onChange="submit()">#{sSelectAndOr}</select>
       <ul>
        <li>
         <span>
@@ -1257,20 +1257,11 @@ rtn = <<EOD
 <script>
 window.onload = function()
 {
-	var obj1 = document.getElementsByName("_output1");
-	var obj2 = document.getElementsByName("_output2");
-	var s1 = "";
-	var i1 = 0;
-	while(i1 < obj1.length)
+	with(document.getElementById("text_search"))
 	{
-		s1 += "'" + obj1[i1].innerText + "' <" + obj2[i1].innerText + ">;\\n";
-		++i1;
-	}
-
-	try{
-		document.getElementById("_textarea11").innerHTML = s1;
-	}
-	catch(e){
+		focus();
+		var len = value.length;
+		setSelectionRange(len, len);
 	}
 }
 function wReset()
